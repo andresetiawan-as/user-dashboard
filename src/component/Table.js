@@ -1,33 +1,28 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom';
+import './index.css'
 
 const Table = (props) => {
-    const [isChange, setIsChange] = useState([])
-    let userList = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : []
+    const { userList, handleDelete } = props
 
-    useEffect(() => {
-        setIsChange(userList)
-    }, [])
-
-    useEffect(() => {
-        userList = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : []
-    }, [isChange])
-
-    const handleDelete = (id) => {
-        let filterUser = userList.filter(e => e.id !== id)
-        localStorage.setItem('user', JSON.stringify(filterUser));
-        setIsChange(filterUser)
-        alert("Delete Success")
+    const formatDate = (d) => {
+        let date = new Date(d)
+        let dd = date.getDate();
+        let month = date.toLocaleString('default', { month: 'long' });
+        let yyyy = date.getFullYear();
+        
+        let result = dd + ' ' + month + ' ' + yyyy
+        return result
     }
 
     return (
         <div>
             <div>
                 <Link to="/add">
-                    <button>Add User</button>
+                    <button className="btn btn-primary">Add User</button>
                 </Link>
             </div>
-            <table id="customers">
+            <table id="user">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -48,12 +43,12 @@ const Table = (props) => {
                                         <td>{data.nama}</td>
                                         <td>{data.pekerjaan}</td>
                                         <td>{data.alamat}</td>
-                                        <td>{data.tanggalLahir}</td>
+                                        <td>{formatDate(data.tanggalLahir)}</td>
                                         <td>
                                             <div>
-                                                <button onClick={() => handleDelete(data.id)}>Delete</button>
+                                                <button className="btn btn-delete" onClick={() => handleDelete(data.id)}>Delete</button>
                                                 <Link to={`/update/${data.id}`}>
-                                                    <button>Update</button>
+                                                    <button className="btn btn-update">Update</button>
                                                 </Link>
                                             </div>
                                         </td>
@@ -67,7 +62,6 @@ const Table = (props) => {
                     }
                 </tbody>
             </table>
-            
         </div>
     )
 }

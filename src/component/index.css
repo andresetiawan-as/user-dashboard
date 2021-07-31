@@ -1,175 +1,79 @@
-.search{
-    display: flex;
-    justify-content: space-between;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin: 30px 0px 30px 0px;
-    background: #fff;
-}
-
-.search-detail{
-    display: flex;
-    justify-content: space-between;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin: 30px 0px 30px 0px;
-    background: #fff;
-    padding: 0 15px;
-}
-
-.search-detail > h3{
-    font-weight: bold
-}
-
-input, input:focus-visible{
-    width: 75%;
-    border: none;
+.input:focus-visible{
     outline: none;
-    padding-left: 15px;
-    border-right: 1px solid #ddd;
+    border-color: #40a9ff;
+    border-right-width: 1px!important;
 }
 
-.list{
-    display: flex;
-    justify-content: space-between;
-    border: solid #fff;
-    background: #fff;
+.input:hover{
+    border-color: #40a9ff;
+    border-right-width: 1px!important;
+}
+
+input[type=text], input[type=date] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
     border-radius: 4px;
-    padding: 15px;
-    margin: 15px 0;
-    cursor: pointer;
-}
-
-.border-done{
-    border-left: 4px solid #56b586;
-}
-.border-pending{
-    border-left: 4px solid #fd6542;
+    box-sizing: border-box;
 }
 
 .btn{
-    border-radius: 4px;
-    padding: 5px 10px;
-    margin-bottom: auto;
-    margin-top: auto;
-    cursor: pointer;
-    text-decoration: none;
-}
-.btn-done{
-    background-color: #56b586;
-    border: 1px solid #56b586;
-    color: #fff;
-}
-.btn-pending{
-    background-color: transparent;
-    border: 1px solid #fd6542;
-    color: #000;
-}
-
-.link{
-    text-decoration: none;
-    color: #000;
-}
-
-.content-list{
-    display: flex;
-    justify-content: start;
-    border: solid #fff;
-    background: #fff;
-    border-radius: 4px;
-    padding: 15px;
-    margin: 15px 0;
-}
-
-.icon{
-    font-size: 20px;
-    color: #ddd;
-    margin-top: auto;
-    margin-bottom: auto;
-    padding: 15px;
-}
-
-.icon-inbox{
-    font-size: 32px;
-    color: #fd6542;
-    padding-right: 15px;
-}
-
-.icon-arrow{
-    font-size: 12px;
-    color: #000;
-}
-
-.icon-dot{
-    font-size: 6px;
-    color: #000;
-    padding-bottom: 2px;
-}
-
-.icon-sort{
-    font-size: 20px;
-    color: #fd6542;
-}
-
-.content-detail{
-    display: flex;
-    justify-content: start;
-    border: solid #fff;
-    background: #fff;
-    border-radius: 4px;
-    margin: 15px 0;
-    padding: 15px;
-}
-
-.detail-list{
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 15px;
-}
-
-.dropbtn {
-    width: 180px;
-    background-color: #fff;
-    padding: 16px;
-    font-size: 16px;
     border: none;
+    padding: 5px 10px;
+    text-align: center;
+    margin: 4px 2px;
+    border-radius: 4px;
+}
+
+.btn:hover{
+    opacity: 0.8;
     cursor: pointer;
-    font-weight: bold;
 }
 
-.dropdown {
-    position: relative;
-    display: inline-block;
+.btn-primary{
+    color: #fff;
+    background: #1890ff;
 }
 
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #fff;
-    min-width: 160px;
-    overflow: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    right: 0;
+.btn-cancel{
+    color: #fff;
+    background: #ec971f;
 }
 
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
+.btn-delete{
+    color: #fff;
+    background: #ff6d18;
 }
 
-.dropdown a:hover {
-    background-color: #ffc8bc;
+.btn-update{
+    color: #fff;
+    background: #4CAF50;
 }
 
-.show {
-    display: block;
+#user{
+    border-collapse: collapse;
+    width: 100%;
 }
 
-@media only screen and (max-width: 450px) {
-    .btn-container{
-        padding-left: 15px;
-    }
+#user td, #user th {
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+
+#user tr:nth-child(even){
+    background-color: #ecebeb;
+}
+
+#user tr:hover {
+    background-color: #ddd;
+}
+
+#user th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #1890ff;
+    color: white;
 }

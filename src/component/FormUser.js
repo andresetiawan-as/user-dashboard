@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import './index.css'
 
 const initState = {
     id: 1,
@@ -36,33 +37,43 @@ const FormUser = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (location.pathname.includes("update")){ //Update User
-            let idx = userArr.findIndex(obj => obj.id === parseInt(match.params.id))
-            userArr[idx].nama = user.nama
-            userArr[idx].pekerjaan = user.pekerjaan
-            userArr[idx].alamat = user.alamat
-            userArr[idx].tanggalLahir = user.tanggalLahir
-            localStorage.setItem('user', JSON.stringify(userArr));
-            setUser(initState)
-            alert("Success Update")
-        }else{ //Create User
-            if(userArr.length !== 0){
-                let length = userArr.length
-                let id = userArr[length-1].id
-                let body = {
-                    id: id+1,
-                    nama: user.nama,
-                    pekerjaan: user.pekerjaan,
-                    alamat: user.alamat,
-                    tanggalLahir: user.tanggalLahir
+        let isValid = true
+        if (user.nama === "" || user.pekerjaan === "" || user.alamat === "" || user.tanggalLahir === ""){
+            isValid = false
+        }
+
+        if(isValid){
+            if (location.pathname.includes("update")){ //Update User
+                let idx = userArr.findIndex(obj => obj.id === parseInt(match.params.id))
+                userArr[idx].nama = user.nama
+                userArr[idx].pekerjaan = user.pekerjaan
+                userArr[idx].alamat = user.alamat
+                userArr[idx].tanggalLahir = user.tanggalLahir
+                localStorage.setItem('user', JSON.stringify(userArr));
+                setUser(initState)
+                alert("Success Update User")
+            }else{ //Create User
+                if(userArr.length !== 0){
+                    let length = userArr.length
+                    let id = userArr[length-1].id
+                    let body = {
+                        id: id+1,
+                        nama: user.nama,
+                        pekerjaan: user.pekerjaan,
+                        alamat: user.alamat,
+                        tanggalLahir: user.tanggalLahir
+                    }
+                    userArr.push(body)
+                }else{
+                    userArr.push(user)
                 }
-                userArr.push(body)
-            }else{
-                userArr.push(user)
+                localStorage.setItem('user', JSON.stringify(userArr));
+                setUser(initState)
+                alert("Success Add User")
             }
-            localStorage.setItem('user', JSON.stringify(userArr));
-            setUser(initState)
-            alert("Success Add")
+            window.history.back()
+        }else{
+            alert("Please fill the form!")
         }
     }
 
@@ -72,31 +83,31 @@ const FormUser = (props) => {
 
     return (
         <form onSubmit={(e) => handleSubmit(e)}>
-            <h1>{`${location.pathname.includes("update") ? "Update" : "Add"} User`}</h1>
+            <h3>{`${location.pathname.includes("update") ? "Update" : "Add"} User`}</h3>
             <div>
                 <div>
                     <label htmlFor="nama">Nama</label>
-                    <input type="text" id="nama" name="nama" placeholder="Masukkan nama.." value={user.nama} onChange={(e) => handleState("nama",e.target.value)}></input>
+                    <input type="text" id="nama" name="nama" className="input" placeholder="Masukkan nama.." value={user.nama} onChange={(e) => handleState("nama",e.target.value)}></input>
                 </div>
 
                 <div>
                     <label htmlFor="pekerjaan">Pekerjaan</label>
-                    <input type="text" id="pekerjaan" name="pekerjaan" placeholder="Masukkan pekerjaan.." value={user.pekerjaan} onChange={(e) => handleState("pekerjaan", e.target.value)}></input>
+                    <input type="text" id="pekerjaan" name="pekerjaan" className="input" placeholder="Masukkan pekerjaan.." value={user.pekerjaan} onChange={(e) => handleState("pekerjaan", e.target.value)}></input>
                 </div>
 
                 <div>
                     <label htmlFor="alamat">Alamat</label>
-                    <input type="text" id="alamat" name="alamat" placeholder="Masukkan alamat.." value={user.alamat} onChange={(e) => handleState("alamat", e.target.value)}></input>
+                    <input type="text" id="alamat" name="alamat" className="input" placeholder="Masukkan alamat.." value={user.alamat} onChange={(e) => handleState("alamat", e.target.value)}></input>
                 </div>
 
                 <div>
                     <label htmlFor="tanggalLahir">Tanggal Lahir</label>
-                    <input type="text" id="tanggalLahir" name="tanggalLahir" placeholder="Masukkan tanggal lahir.." value={user.tanggalLahir} onChange={(e) => handleState("tanggalLahir", e.target.value)}></input>
+                    <input type="date" id="tanggalLahir" name="tanggalLahir" className="input" placeholder="Masukkan tanggal lahir.." data-date-format="DD MMMM YYYY" value={user.tanggalLahir} onChange={(e) => handleState("tanggalLahir", e.target.value)}></input>
                 </div>
             </div>
             <div>
-                <button type="submit">Simpan</button>
-                <button type="button" onClick={() => handleCancel()}>Batal</button>
+                <button type="submit" className="btn btn-primary">Simpan</button>
+                <button type="button" className="btn btn-cancel" onClick={() => handleCancel()}>Batal</button>
             </div>
         </form>
     )

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import './App.css';
 import Home from './component/Home'
@@ -10,7 +10,7 @@ const App = () => {
       <div className="content">
         <div className="container">
           <div>
-            <h1>User Dashboard</h1>
+            <h2>User Dashboard</h2>
           </div>
           <Switch>
             <Route path='/' exact component={Home} />
