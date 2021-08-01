@@ -77,3 +77,7 @@ input[type=text], input[type=date] {
     background-color: #1890ff;
     color: white;
 }
+
+#user .no-data{
+    text-align: center;
+}

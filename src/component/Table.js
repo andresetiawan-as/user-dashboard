@@ -57,7 +57,7 @@ const Table = (props) => {
                             })
                         : 
                             <tr>
-                                <td colSpan="6">No Data</td>
+                                <td colSpan="6" className="no-data">No Data</td>
                             </tr>
                     }
                 </tbody>
